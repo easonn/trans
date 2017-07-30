@@ -79,7 +79,7 @@
 							<td><input name="items" value="${bill.getId()}"
 								type="checkbox" /></td>
 							<td class="hidden-phone"><fmt:formatDate type="date"
-									value="${bill.getCheckDate()}" /></td>
+									value="${bill.getBillDate()}" /></td>
 							<td class="hidden-phone"><fmt:formatDate type="date"
 									value="${bill.getSettleDate()}" /></td>
 							<td class="hidden-phone"><c:out value="${bill.getBillNo()}"></c:out></td>
