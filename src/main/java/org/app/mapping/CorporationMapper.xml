@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.app.dao.CorporationMapper">
+	<resultMap id="BaseResultMap" type="org.app.pojo.Corporation">
+		<id column="corp_id" property="corpId" jdbcType="VARCHAR" />
+		<result column="corp_name" property="corpName" jdbcType="VARCHAR" />
+		<result column="corp_phone" property="corpPhone" jdbcType="VARCHAR" />
+		<result column="corp_address" property="corpAddress" jdbcType="VARCHAR" />
+		<result column="corp_payer" property="corpPayer" jdbcType="VARCHAR" />
+		<result column="consignee" property="consignee" jdbcType="VARCHAR" />
+		<result column="bank_no" property="bankNo" jdbcType="VARCHAR" />
+		<result column="dtpg" property="dtpg" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		corp_id, corp_name, corp_phone, corp_address, corp_payer, consignee, bank_no,
+		dtpg
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from corporation
+		where corp_id = #{corpId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from corporation
+		where corp_id = #{corpId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.app.pojo.Corporation">
+		insert into corporation (corp_id, corp_name, corp_phone,
+		corp_address, corp_payer, consignee,
+		bank_no, dtpg)
+		values (#{corpId,jdbcType=VARCHAR}, #{corpName,jdbcType=VARCHAR},
+		#{corpPhone,jdbcType=VARCHAR},
+		#{corpAddress,jdbcType=VARCHAR}, #{corpPayer,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR},
+		#{bankNo,jdbcType=VARCHAR}, #{dtpg,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.app.pojo.Corporation">
+		insert into corporation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="corpId != null">
+				corp_id,
+			</if>
+			<if test="corpName != null">
+				corp_name,
+			</if>
+			<if test="corpPhone != null">
+				corp_phone,
+			</if>
+			<if test="corpAddress != null">
+				corp_address,
+			</if>
+			<if test="corpPayer != null">
+				corp_payer,
+			</if>
+			<if test="consignee != null">
+				consignee,
+			</if>
+			<if test="bankNo != null">
+				bank_no,
+			</if>
+			<if test="dtpg != null">
+				dtpg,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="corpId != null">
+				#{corpId,jdbcType=VARCHAR},
+			</if>
+			<if test="corpName != null">
+				#{corpName,jdbcType=VARCHAR},
+			</if>
+			<if test="corpPhone != null">
+				#{corpPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="corpAddress != null">
+				#{corpAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="corpPayer != null">
+				#{corpPayer,jdbcType=VARCHAR},
+			</if>
+			<if test="consignee != null">
+				#{consignee,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				#{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="dtpg != null">
+				#{dtpg,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.app.pojo.Corporation">
+		update corporation
+		<set>
+			<if test="corpName != null">
+				corp_name = #{corpName,jdbcType=VARCHAR},
+			</if>
+			<if test="corpPhone != null">
+				corp_phone = #{corpPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="corpAddress != null">
+				corp_address = #{corpAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="corpPayer != null">
+				corp_payer = #{corpPayer,jdbcType=VARCHAR},
+			</if>
+			<if test="consignee != null">
+				consignee = #{consignee,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				bank_no = #{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="dtpg != null">
+				dtpg = #{dtpg,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where corp_id = #{corpId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.app.pojo.Corporation">
+		update corporation
+		set corp_name = #{corpName,jdbcType=VARCHAR},
+		corp_phone = #{corpPhone,jdbcType=VARCHAR},
+		corp_address = #{corpAddress,jdbcType=VARCHAR},
+		corp_payer = #{corpPayer,jdbcType=VARCHAR},
+		consignee = #{consignee,jdbcType=VARCHAR},
+		bank_no = #{bankNo,jdbcType=VARCHAR},
+		dtpg = #{dtpg,jdbcType=VARCHAR}
+		where corp_id = #{corpId,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="dynamicLoad" resultMap="BaseResultMap"
+		parameterType="org.app.pojo.Corporation">
+		select
+		<include refid="Base_Column_List" />
+		from corporation where 1=1
+		<if test="corpName != null and corpName !=''">
+			and corp_name LIKE CONCAT('%',
+			CONCAT(#{corpName,jdbcType=VARCHAR},
+			'%'))
+		</if>
+		<if test="corpPayer != null and corpPayer !=''">
+			and corp_payer LIKE CONCAT('%',
+			CONCAT(#{corpPayer,jdbcType=VARCHAR}, '%'))
+		</if>
+	</select>
+
+
+</mapper>

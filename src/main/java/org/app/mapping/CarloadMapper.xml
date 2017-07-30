@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.app.dao.CarloadMapper">
+	<resultMap id="BaseResultMap" type="org.app.pojo.Carload">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="check_date" property="checkDate" jdbcType="DATE" />
+		<result column="settle_date" property="settleDate" jdbcType="DATE" />
+		<result column="send_station" property="sendStation" jdbcType="VARCHAR" />
+		<result column="arrive_station" property="arriveStation"
+			jdbcType="VARCHAR" />
+		<result column="arrive_date" property="arriveDate" jdbcType="DATE" />
+		<result column="bill_no" property="billNo" jdbcType="VARCHAR" />
+		<result column="good" property="good" jdbcType="VARCHAR" />
+		<result column="quantity" property="quantity" jdbcType="INTEGER" />
+		<result column="weight" property="weight" jdbcType="DECIMAL" />
+		<result column="invoice" property="invoice" jdbcType="DECIMAL" />
+		<result column="repa_projc" property="repaProjc" jdbcType="DECIMAL" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="receivable" property="receivable" jdbcType="DECIMAL" />
+		<result column="FLAG" property="flag" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="org.app.pojo.Carload"
+		extends="BaseResultMap">
+		<result column="sa_comment" property="saComment" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, check_date, settle_date, send_station, arrive_station,
+		arrive_date,
+		bill_no,
+		good, quantity, weight, invoice, repa_projc,
+		price, receivable, FLAG
+	</sql>
+	<sql id="Blob_Column_List">
+		sa_comment
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from carload
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		carload
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="org.app.pojo.Carload">
+		insert into carload (id,
+		check_date, settle_date,
+		send_station, arrive_station, arrive_date,
+		bill_no, good, quantity,
+		weight, invoice, repa_projc,
+		price, receivable,
+		FLAG,
+		sa_comment)
+		values (#{id,jdbcType=INTEGER},
+		#{checkDate,jdbcType=DATE},
+		#{settleDate,jdbcType=DATE},
+		#{sendStation,jdbcType=VARCHAR}, #{arriveStation,jdbcType=VARCHAR},
+		#{arriveDate,jdbcType=DATE},
+		#{billNo,jdbcType=VARCHAR},
+		#{good,jdbcType=VARCHAR},
+		#{quantity,jdbcType=INTEGER},
+		#{weight,jdbcType=DECIMAL}, #{invoice,jdbcType=DECIMAL},
+		#{repaProjc,jdbcType=DECIMAL},
+		#{price,jdbcType=DECIMAL},
+		#{receivable,jdbcType=DECIMAL},
+		#{flag,jdbcType=VARCHAR},
+		#{saComment,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.app.pojo.Carload">
+		insert into carload
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="checkDate != null">
+				check_date,
+			</if>
+			<if test="settleDate != null">
+				settle_date,
+			</if>
+			<if test="sendStation != null">
+				send_station,
+			</if>
+			<if test="arriveStation != null">
+				arrive_station,
+			</if>
+			<if test="arriveDate != null">
+				arrive_date,
+			</if>
+			<if test="billNo != null">
+				bill_no,
+			</if>
+			<if test="good != null">
+				good,
+			</if>
+			<if test="quantity != null">
+				quantity,
+			</if>
+			<if test="weight != null">
+				weight,
+			</if>
+			<if test="invoice != null">
+				invoice,
+			</if>
+			<if test="repaProjc != null">
+				repa_projc,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="receivable != null">
+				receivable,
+			</if>
+			<if test="flag != null">
+				FLAG,
+			</if>
+			<if test="saComment != null">
+				sa_comment,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="checkDate != null">
+				#{checkDate,jdbcType=DATE},
+			</if>
+			<if test="settleDate != null">
+				#{settleDate,jdbcType=DATE},
+			</if>
+			<if test="sendStation != null">
+				#{sendStation,jdbcType=VARCHAR},
+			</if>
+			<if test="arriveStation != null">
+				#{arriveStation,jdbcType=VARCHAR},
+			</if>
+			<if test="arriveDate != null">
+				#{arriveDate,jdbcType=DATE},
+			</if>
+			<if test="billNo != null">
+				#{billNo,jdbcType=VARCHAR},
+			</if>
+			<if test="good != null">
+				#{good,jdbcType=VARCHAR},
+			</if>
+			<if test="quantity != null">
+				#{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="weight != null">
+				#{weight,jdbcType=DECIMAL},
+			</if>
+			<if test="invoice != null">
+				#{invoice,jdbcType=DECIMAL},
+			</if>
+			<if test="repaProjc != null">
+				#{repaProjc,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="receivable != null">
+				#{receivable,jdbcType=DECIMAL},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="saComment != null">
+				#{saComment,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.app.pojo.Carload">
+		update carload
+		<set>
+			<if test="checkDate != null">
+				check_date = #{checkDate,jdbcType=DATE},
+			</if>
+			<if test="settleDate != null">
+				settle_date = #{settleDate,jdbcType=DATE},
+			</if>
+			<if test="sendStation != null">
+				send_station = #{sendStation,jdbcType=VARCHAR},
+			</if>
+			<if test="arriveStation != null">
+				arrive_station = #{arriveStation,jdbcType=VARCHAR},
+			</if>
+			<if test="arriveDate != null">
+				arrive_date = #{arriveDate,jdbcType=DATE},
+			</if>
+			<if test="billNo != null">
+				bill_no = #{billNo,jdbcType=VARCHAR},
+			</if>
+			<if test="good != null">
+				good = #{good,jdbcType=VARCHAR},
+			</if>
+			<if test="quantity != null">
+				quantity = #{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="weight != null">
+				weight = #{weight,jdbcType=DECIMAL},
+			</if>
+			<if test="invoice != null">
+				invoice = #{invoice,jdbcType=DECIMAL},
+			</if>
+			<if test="repaProjc != null">
+				repa_projc = #{repaProjc,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="receivable != null">
+				receivable = #{receivable,jdbcType=DECIMAL},
+			</if>
+			<if test="flag != null">
+				FLAG = #{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="saComment != null">
+				sa_comment = #{saComment,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.app.pojo.Carload">
+		update
+		carload
+		set check_date = #{checkDate,jdbcType=DATE},
+		settle_date =
+		#{settleDate,jdbcType=DATE},
+		send_station =
+		#{sendStation,jdbcType=VARCHAR},
+		arrive_station =
+		#{arriveStation,jdbcType=VARCHAR},
+		arrive_date =
+		#{arriveDate,jdbcType=DATE},
+		bill_no = #{billNo,jdbcType=VARCHAR},
+		good
+		= #{good,jdbcType=VARCHAR},
+		quantity = #{quantity,jdbcType=INTEGER},
+		weight = #{weight,jdbcType=DECIMAL},
+		invoice =
+		#{invoice,jdbcType=DECIMAL},
+		repa_projc =
+		#{repaProjc,jdbcType=DECIMAL},
+		price = #{price,jdbcType=DECIMAL},
+		receivable = #{receivable,jdbcType=DECIMAL},
+		FLAG =
+		#{flag,jdbcType=VARCHAR},
+		sa_comment =
+		#{saComment,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.app.pojo.Carload">
+		update carload
+		set
+		check_date = #{checkDate,jdbcType=DATE},
+		settle_date =
+		#{settleDate,jdbcType=DATE},
+		send_station =
+		#{sendStation,jdbcType=VARCHAR},
+		arrive_station =
+		#{arriveStation,jdbcType=VARCHAR},
+		arrive_date =
+		#{arriveDate,jdbcType=DATE},
+		bill_no = #{billNo,jdbcType=VARCHAR},
+		good
+		= #{good,jdbcType=VARCHAR},
+		quantity = #{quantity,jdbcType=INTEGER},
+		weight = #{weight,jdbcType=DECIMAL},
+		invoice =
+		#{invoice,jdbcType=DECIMAL},
+		repa_projc =
+		#{repaProjc,jdbcType=DECIMAL},
+		price = #{price,jdbcType=DECIMAL},
+		receivable = #{receivable,jdbcType=DECIMAL},
+		FLAG =
+		#{flag,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="getMaxId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		SELECT IFNULL(MAX(id),0) FROM
+		carload
+	</select>
+
+	<select id="dynamicLoad" resultMap="BaseResultMap"
+		parameterType="org.app.pojo.Carload">
+		select
+		<include refid="Base_Column_List" />
+		from carload where 1=1
+		<if test="good != null and good !=''">
+			and good LIKE CONCAT('%',
+			CONCAT(#{good,jdbcType=VARCHAR},
+			'%'))
+		</if>
+		<if test="repaProjc != null and repaProjc !=''">
+			and repa_projc LIKE CONCAT('%',
+			CONCAT(#{repaProjc,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="sendStation != null and sendStation !=''">
+			and send_station LIKE CONCAT('%',
+			CONCAT(#{sendStation,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="arriveStation != null and arriveStation !=''">
+			and arrive_station LIKE CONCAT('%',
+			CONCAT(#{arriveStation,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="flag != null and flag !=''">
+			and flag LIKE CONCAT('%',
+			CONCAT(#{flag,jdbcType=VARCHAR},
+			'%'))
+		</if>
+		<if test="billNo != null and billNo !=''">
+			and bill_no LIKE CONCAT('%',
+			CONCAT(#{billNo,jdbcType=VARCHAR},
+			'%'))
+		</if>
+	</select>
+
+</mapper>

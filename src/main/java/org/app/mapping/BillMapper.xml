@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.app.dao.BillMapper">
+	<resultMap id="BaseResultMap" type="org.app.pojo.Bill">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="check_date" property="checkDate" jdbcType="DATE" />
+		<result column="settle_date" property="settleDate" jdbcType="DATE" />
+		<result column="bill_date" property="billDate" jdbcType="DATE" />
+		<result column="bill_send_date" property="billSendDate"
+			jdbcType="DATE" />
+		<result column="bill_corp" property="billCorp" jdbcType="VARCHAR" />
+		<result column="bill_no" property="billNo" jdbcType="VARCHAR" />
+		<result column="deductions_corp" property="deductionsCorp"
+			jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="bill_point" property="billPoint" jdbcType="DECIMAL" />
+		<result column="bill_price" property="billPrice" jdbcType="DECIMAL" />
+		<result column="FLAG" property="flag" jdbcType="VARCHAR" />
+		<result column="agencys" property="agencys" jdbcType="VARCHAR" />
+		<result column="agencyf" property="agencyf" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="org.app.pojo.Bill"
+		extends="BaseResultMap">
+		<result column="rep_comment" property="repComment" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, check_date, settle_date, bill_date, bill_send_date,
+		bill_corp,
+		bill_no, deductions_corp,
+		price, bill_point, bill_price,
+		FLAG,agencys,agencyf
+	</sql>
+	<sql id="Blob_Column_List">
+		rep_comment
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from bill
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from bill
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="org.app.pojo.Bill">
+		insert into bill (id,
+		check_date, settle_date,
+		bill_date, bill_send_date, bill_corp,
+		bill_no,
+		deductions_corp, price,
+		bill_point, bill_price, FLAG,agencys,agencyf
+		rep_comment)
+		values (#{id,jdbcType=INTEGER},
+		#{checkDate,jdbcType=DATE},
+		#{settleDate,jdbcType=DATE},
+		#{billDate,jdbcType=DATE},
+		#{billSendDate,jdbcType=DATE},
+		#{billCorp,jdbcType=VARCHAR},
+		#{billNo,jdbcType=VARCHAR},
+		#{deductionsCorp,jdbcType=VARCHAR},
+		#{price,jdbcType=DECIMAL},
+		#{billPoint,jdbcType=DECIMAL},
+		#{billPrice,jdbcType=DECIMAL},
+		#{flag,jdbcType=VARCHAR},#{agencys,jdbcType=VARCHAR},#{agencyf,jdbcType=VARCHAR},
+		#{repComment,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.app.pojo.Bill">
+		insert into bill
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="checkDate != null">
+				check_date,
+			</if>
+			<if test="settleDate != null">
+				settle_date,
+			</if>
+			<if test="billDate != null">
+				bill_date,
+			</if>
+			<if test="billSendDate != null">
+				bill_send_date,
+			</if>
+			<if test="billCorp != null">
+				bill_corp,
+			</if>
+			<if test="billNo != null">
+				bill_no,
+			</if>
+			<if test="deductionsCorp != null">
+				deductions_corp,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="billPoint != null">
+				bill_point,
+			</if>
+			<if test="billPrice != null">
+				bill_price,
+			</if>
+			<if test="flag != null">
+				FLAG,
+			</if>
+			<if test="repComment != null">
+				rep_comment,
+			</if>
+			<if test="agencys != null">
+				agencys,
+			</if>
+			<if test="agencyf != null">
+				agencyf,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="checkDate != null">
+				#{checkDate,jdbcType=DATE},
+			</if>
+			<if test="settleDate != null">
+				#{settleDate,jdbcType=DATE},
+			</if>
+			<if test="billDate != null">
+				#{billDate,jdbcType=DATE},
+			</if>
+			<if test="billSendDate != null">
+				#{billSendDate,jdbcType=DATE},
+			</if>
+			<if test="billCorp != null">
+				#{billCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="billNo != null">
+				#{billNo,jdbcType=VARCHAR},
+			</if>
+			<if test="deductionsCorp != null">
+				#{deductionsCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="billPoint != null">
+				#{billPoint,jdbcType=DECIMAL},
+			</if>
+			<if test="billPrice != null">
+				#{billPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="repComment != null">
+				#{repComment,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="agencys != null">
+				#{agencys,jdbcType=VARCHAR},
+			</if>
+			<if test="agencyf != null">
+				#{agencyf,jdbcType=VARCHAR},
+			</if>
+
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.app.pojo.Bill">
+		update bill
+		<set>
+			<if test="checkDate != null">
+				check_date = #{checkDate,jdbcType=DATE},
+			</if>
+			<if test="settleDate != null">
+				settle_date = #{settleDate,jdbcType=DATE},
+			</if>
+			<if test="billDate != null">
+				bill_date = #{billDate,jdbcType=DATE},
+			</if>
+			<if test="billSendDate != null">
+				bill_send_date = #{billSendDate,jdbcType=DATE},
+			</if>
+			<if test="billCorp != null">
+				bill_corp = #{billCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="billNo != null">
+				bill_no = #{billNo,jdbcType=VARCHAR},
+			</if>
+			<if test="deductionsCorp != null">
+				deductions_corp = #{deductionsCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="billPoint != null">
+				bill_point = #{billPoint,jdbcType=DECIMAL},
+			</if>
+			<if test="billPrice != null">
+				bill_price = #{billPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="flag != null">
+				FLAG = #{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="repComment != null">
+				rep_comment = #{repComment,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="agencys != null">
+				agencys = #{agencys,jdbcType=VARCHAR},
+			</if>
+			<if test="agencyf != null">
+				agencyf = #{agencyf,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.app.pojo.Bill">
+		update
+		bill
+		set check_date = #{checkDate,jdbcType=DATE},
+		settle_date =
+		#{settleDate,jdbcType=DATE},
+		bill_date = #{billDate,jdbcType=DATE},
+		bill_send_date = #{billSendDate,jdbcType=DATE},
+		bill_corp =
+		#{billCorp,jdbcType=VARCHAR},
+		bill_no = #{billNo,jdbcType=VARCHAR},
+		deductions_corp = #{deductionsCorp,jdbcType=VARCHAR},
+		price =
+		#{price,jdbcType=DECIMAL},
+		bill_point = #{billPoint,jdbcType=DECIMAL},
+		bill_price = #{billPrice,jdbcType=DECIMAL},
+		FLAG =
+		#{flag,jdbcType=VARCHAR},
+		rep_comment =
+		#{repComment,jdbcType=LONGVARCHAR},
+		agencys =
+		#{agencys,jdbcType=VARCHAR},
+		      agencyf =
+        #{agencyf,jdbcType=VARCHAR},
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.app.pojo.Bill">
+		update bill
+		set
+		check_date = #{checkDate,jdbcType=DATE},
+		settle_date =
+		#{settleDate,jdbcType=DATE},
+		bill_date = #{billDate,jdbcType=DATE},
+		bill_send_date = #{billSendDate,jdbcType=DATE},
+		bill_corp =
+		#{billCorp,jdbcType=VARCHAR},
+		bill_no = #{billNo,jdbcType=VARCHAR},
+		deductions_corp = #{deductionsCorp,jdbcType=VARCHAR},
+		price =
+		#{price,jdbcType=DECIMAL},
+		bill_point = #{billPoint,jdbcType=DECIMAL},
+		bill_price = #{billPrice,jdbcType=DECIMAL},
+		agencys =
+		#{agencys,jdbcType=VARCHAR},
+		      agencyf =
+        #{agencyf,jdbcType=VARCHAR},
+		FLAG =
+		#{flag,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="dynamicLoad" resultMap="BaseResultMap"
+		parameterType="org.app.pojo.Bill">
+		select
+		<include refid="Base_Column_List" />
+		from bill where 1=1
+		<if test="billPoint != null and billPoint !=''">
+			and bill_corp LIKE CONCAT('%',
+			CONCAT(#{billPoint,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="deductionsCorp != null and deductionsCorp !=''">
+			and deductions_corp LIKE CONCAT('%',
+			CONCAT(#{deductionsCorp,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="checkDate != null and checkDate !=''">
+			and check_date &gt;= #{checkDate,jdbcType=DATE}
+		</if>
+		<if test="flag != null and flag !=''">
+			and FLAG=#{flag,jdbcType=VARCHAR}
+		</if>
+		<if test="billNo != null and billNo !=''">
+			and bill_no LIKE CONCAT('%',
+			CONCAT(#{billNo,jdbcType=VARCHAR}, '%'))
+		</if>
+	</select>
+
+	<select id="getMaxId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		SELECT IFNULL(MAX(id),0) FROM
+		bill
+	</select>
+
+	<select id="selectByNo" resultMap="BaseResultMap" parameterType="org.app.pojo.Bill">
+		select
+		<include refid="Base_Column_List" />
+		from bill
+		where
+		bill_no=#{billNo,jdbcType=VARCHAR}
+	</select>
+
+</mapper>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.app.dao.SainputMapper">
+	<resultMap id="BaseResultMap" type="org.app.pojo.Sainput">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="date" property="date" jdbcType="DATE" />
+		<result column="station" property="station" jdbcType="VARCHAR" />
+		<result column="corp" property="corp" jdbcType="VARCHAR" />
+		<result column="good_name" property="goodName" jdbcType="VARCHAR" />
+		<result column="cntr_place" property="cntrPlace" jdbcType="VARCHAR" />
+		<result column="bill_type" property="billType" jdbcType="VARCHAR" />
+		<result column="cntr_type" property="cntrType" jdbcType="VARCHAR" />
+		<result column="bill_no" property="billNo" jdbcType="VARCHAR" />
+		<result column="cntr_owner" property="cntrOwner" jdbcType="VARCHAR" />
+		<result column="cntr_no" property="cntrNo" jdbcType="VARCHAR" />
+		<result column="lock_no" property="lockNo" jdbcType="INTEGER" />
+		<result column="FLAG" property="flag" jdbcType="VARCHAR" />
+		<result column="income_state" property="incomeState" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, date, station, corp, good_name, cntr_place, bill_type,
+		cntr_type,
+		bill_no, cntr_owner,
+		cntr_no, lock_no, FLAG, income_state
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sainput
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sainput
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="org.app.pojo.Sainput">
+		insert into sainput (id, date,
+		station,
+		corp, good_name, cntr_place,
+		bill_type, cntr_type, bill_no,
+		cntr_owner, cntr_no, lock_no,
+		FLAG,income_state)
+		values
+		(#{id,jdbcType=INTEGER}, #{date,jdbcType=DATE},
+		#{station,jdbcType=VARCHAR},
+		#{corp,jdbcType=VARCHAR},
+		#{goodName,jdbcType=VARCHAR}, #{cntrPlace,jdbcType=VARCHAR},
+		#{billType,jdbcType=VARCHAR}, #{cntrType,jdbcType=VARCHAR},
+		#{billNo,jdbcType=VARCHAR},
+		#{cntrOwner,jdbcType=VARCHAR},
+		#{cntrNo,jdbcType=VARCHAR}, #{lockNo,jdbcType=INTEGER},
+		#{flag,jdbcType=VARCHAR},
+		#{incomeState,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.app.pojo.Sainput">
+		insert into sainput
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="date != null">
+				date,
+			</if>
+			<if test="station != null">
+				station,
+			</if>
+			<if test="corp != null">
+				corp,
+			</if>
+			<if test="goodName != null">
+				good_name,
+			</if>
+			<if test="cntrPlace != null">
+				cntr_place,
+			</if>
+			<if test="billType != null">
+				bill_type,
+			</if>
+			<if test="cntrType != null">
+				cntr_type,
+			</if>
+			<if test="billNo != null">
+				bill_no,
+			</if>
+			<if test="cntrOwner != null">
+				cntr_owner,
+			</if>
+			<if test="cntrNo != null">
+				cntr_no,
+			</if>
+			<if test="lockNo != null">
+				lock_no,
+			</if>
+			<if test="flag != null">
+				FLAG,
+			</if>
+			<if test="incomeState != null">
+				income_state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="date != null">
+				#{date,jdbcType=DATE},
+			</if>
+			<if test="station != null">
+				#{station,jdbcType=VARCHAR},
+			</if>
+			<if test="corp != null">
+				#{corp,jdbcType=VARCHAR},
+			</if>
+			<if test="goodName != null">
+				#{goodName,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrPlace != null">
+				#{cntrPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="billType != null">
+				#{billType,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrType != null">
+				#{cntrType,jdbcType=VARCHAR},
+			</if>
+			<if test="billNo != null">
+				#{billNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrOwner != null">
+				#{cntrOwner,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrNo != null">
+				#{cntrNo,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNo != null">
+				#{lockNo,jdbcType=INTEGER},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="incomeState != null">
+				#{incomeState,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.app.pojo.Sainput">
+		update sainput
+		<set>
+			<if test="date != null">
+				date = #{date,jdbcType=DATE},
+			</if>
+			<if test="station != null">
+				station = #{station,jdbcType=VARCHAR},
+			</if>
+			<if test="corp != null">
+				corp = #{corp,jdbcType=VARCHAR},
+			</if>
+			<if test="goodName != null">
+				good_name = #{goodName,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrPlace != null">
+				cntr_place = #{cntrPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="billType != null">
+				bill_type = #{billType,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrType != null">
+				cntr_type = #{cntrType,jdbcType=VARCHAR},
+			</if>
+			<if test="billNo != null">
+				bill_no = #{billNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrOwner != null">
+				cntr_owner = #{cntrOwner,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrNo != null">
+				cntr_no = #{cntrNo,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNo != null">
+				lock_no = #{lockNo,jdbcType=INTEGER},
+			</if>
+			<if test="flag != null">
+				FLAG = #{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="incomeState != null">
+				income_state = #{incomeState,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.app.pojo.Sainput">
+		update sainput
+		set
+		date = #{date,jdbcType=DATE},
+		station = #{station,jdbcType=VARCHAR},
+		corp = #{corp,jdbcType=VARCHAR},
+		good_name =
+		#{goodName,jdbcType=VARCHAR},
+		cntr_place =
+		#{cntrPlace,jdbcType=VARCHAR},
+		bill_type =
+		#{billType,jdbcType=VARCHAR},
+		cntr_type = #{cntrType,jdbcType=VARCHAR},
+		bill_no = #{billNo,jdbcType=VARCHAR},
+		cntr_owner =
+		#{cntrOwner,jdbcType=VARCHAR},
+		cntr_no = #{cntrNo,jdbcType=VARCHAR},
+		lock_no = #{lockNo,jdbcType=INTEGER},
+		FLAG = #{flag,jdbcType=VARCHAR}
+		income_state = #{incomeState,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="dynamicLoad" resultMap="BaseResultMap"
+		parameterType="org.app.pojo.Sainput">
+		select
+		<include refid="Base_Column_List" />
+		from sainput where 1=1
+		<if test="station != null and station !=''">
+			and station LIKE CONCAT('%',
+			CONCAT(#{station,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="goodName != null and goodName !=''">
+			and good_name LIKE CONCAT('%',
+			CONCAT(#{goodName,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="cntrNo != null and cntrNo !=''">
+			and cntr_no &gt;= #{cntrNo,jdbcType=DATE}
+		</if>
+		<if test="flag != null and flag !=''">
+			and FLAG=#{flag,jdbcType=VARCHAR}
+		</if>
+		<if test="cntrOwner != null and cntrOwner !=''">
+			and cntr_owner LIKE CONCAT('%',
+			CONCAT(#{cntrOwner,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="incomeState != null and incomeState !=''">
+			and income_state LIKE CONCAT('%',
+			CONCAT(#{incomeState,jdbcType=VARCHAR}, '%'))
+		</if>
+	</select>
+
+	<select id="getMaxId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		SELECT IFNULL(MAX(id),0) FROM
+		sainput
+	</select>
+</mapper>

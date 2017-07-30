@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- BEGIN META -->
+	  <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="">
+      <meta name="author" content="Olive Enterprise">
+	  <!-- END META -->
+     
+      <!-- BEGIN SHORTCUT ICON -->
+	  <link rel="shortcut icon" href="img/favicon.ico">
+	  <!-- END SHORTCUT ICON -->
+      <title>Dynamic Table</title>
+	  <!-- BEGIN STYLESHEET --> 
+      <link href="css/bootstrap.min.css" rel="stylesheet"><!-- BOOTSTRAP CSS -->
+      <link href="css/bootstrap-reset.css" rel="stylesheet"><!-- BOOTSTRAP CSS -->
+      <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"><!-- FONT AWESOME ICON STYLESHEET -->
+      <link href="assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet"><!-- ADVANCED DATATABLE CSS -->
+      <link href="assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet"><!-- ADVANCED DATATABLE CSS -->
+      <link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css"><!-- DATATABLE CSS -->
+      <link href="css/style.css" rel="stylesheet"><!-- THEME BASIC CSS -->
+      <link href="css/style-responsive.css" rel="stylesheet"><!-- THEME BASIC RESPONSIVE  CSS -->
+      <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <![endif]-->
+	  <!-- END STYLESHEET --> 
+   </head>
+   <body>
+    <section class="wrapper site-min-height">
+			    <!-- BEGIN ROW  -->
+               <div class="row">
+                  <div class="col-lg-12">
+                     <section class="panel">
+                        <header class="panel-heading">
+                           <span class="label label-primary">系统日志</span>
+                           <span class="tools pull-right">
+                           <a href="javascript:;" class="fa fa-chevron-down"></a>
+                           <a href="javascript:;" class="fa fa-times"></a>
+                           </span>
+                        </header>
+                        <div class="panel-body">
+                           <div class="adv-table">
+                              <table class="display table table-bordered table-striped" id="example">
+                                 <thead>
+                                    <tr>
+                                       <th width="100px">索引</th>
+                                       <th>类型</th>
+                                       <th>日志内容</th>
+                                       <th>操作时间</th>
+                                       <th>操作人</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr class="gradeX">
+                                       <td>1</td>
+                                       <td class="hidden-phone">Info
+                                       </td>
+                                       <td class="hidden-phone">8days, 00:56:00, DHCPS: Send ACK to 192.168.0.102.</td>
+                                       <td class="hidden-phone">2017.01.11</td>
+                                       <td class="center hidden-phone">xxxx</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                       <td>2</td>
+                                       <td class="hidden-phone">Info
+                                       </td>
+                                       <td class="hidden-phone">8days, 00:56:00, DHCPS: Send ACK to 192.168.0.102.</td>
+                                       <td class="hidden-phone">2017.01.11</td>
+                                       <td class="center hidden-phone">xxxx</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                       <td>3</td>
+                                       <td class="hidden-phone">Info
+                                       </td>
+                                       <td class="hidden-phone">8days, 00:56:00, DHCPS: Send ACK to 192.168.0.102.</td>
+                                       <td class="hidden-phone">2017.01.11</td>
+                                       <td class="center hidden-phone">xxxx</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                       <td>4</td>
+                                       <td class="hidden-phone">Info
+                                       </td>
+                                       <td class="hidden-phone">8days, 00:56:00, DHCPS: Send ACK to 192.168.0.102.</td>
+                                       <td class="hidden-phone">2017.01.11</td>
+                                       <td class="center hidden-phone">xxxx</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                       <td>5</td>
+                                       <td class="hidden-phone">Info
+                                       </td>
+                                       <td class="hidden-phone">8days, 00:56:00, DHCPS: Send ACK to 192.168.0.102.</td>
+                                       <td class="hidden-phone">2017.01.11</td>
+                                       <td class="center hidden-phone">xxxx</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                       <td>6</td>
+                                       <td class="hidden-phone">Info
+                                       </td>
+                                       <td class="hidden-phone">8days, 00:56:00, DHCPS: Send ACK to 192.168.0.102.</td>
+                                       <td class="hidden-phone">2017.01.11</td>
+                                       <td class="center hidden-phone">xxxx</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                       <td>7</td>
+                                       <td class="hidden-phone">Info
+                                       </td>
+                                       <td class="hidden-phone">8days, 00:56:00, DHCPS: Send ACK to 192.168.0.102.</td>
+                                       <td class="hidden-phone">2017.01.11</td>
+                                       <td class="center hidden-phone">xxxx</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                       <td>8</td>
+                                       <td class="hidden-phone">Info
+                                       </td>
+                                       <td class="hidden-phone">8days, 00:56:00, DHCPS: Send ACK to 192.168.0.102.</td>
+                                       <td class="hidden-phone">2017.01.11</td>
+                                       <td class="center hidden-phone">xxxx</td>
+                                    </tr>
+                                 </tbody>
+                                 <tfoot>
+                                    <tr>
+                                       <th width="100px">索引</th>
+                                       <th>类型</th>
+                                       <th>日志内容</th>
+                                       <th>操作时间</th>
+                                       <th>
+                                 </tfoot>
+                              </table>
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+			   <!-- END ROW  -->
+            </section>
+         </section>
+		 <!-- END SECTION --> 
+	  
+	  <!-- BEGIN JS --> 
+		<script language="javascript" src="assets/advanced-datatable/media/js/jquery.js"></script><!-- BASIC JQUERY JS  -->
+		<script src="js/bootstrap.min.js" ></script><!-- BOOTSTRAP JS  -->
+		<script src="js/jquery.dcjqaccordion.2.7.js"></script><!-- ACCORDING JS -->
+		<script src="js/jquery.scrollTo.min.js" ></script><!-- SCROLLTO JS  -->
+		<script src="js/jquery.nicescroll.js" > </script><!-- NICESCROLL JS  -->
+		<script language="javascript" src="assets/advanced-datatable/media/js/jquery.dataTables.js"></script><!-- BASIC COMMON JS  -->
+		<script src="assets/data-tables/DT_bootstrap.js"></script><!-- DATATABLE BOOTSTRAP JS  -->
+		<script src="js/respond.min.js" ></script><!-- RESPOND JS  -->
+		<script src="js/common-scripts.js" ></script><!-- BASIC COMMON JS  -->
+      <script >
+	     <!-- DATATABLE JS  -->
+         $(document).ready(function() {
+             $('#example').dataTable( {
+                 "aaSorting": [[ 4, "desc" ]]
+             } );
+         } );
+      </script>
+	  <!-- END JS --> 
+   </body>
+</html>

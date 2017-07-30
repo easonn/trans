@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.app.dao.SummaryMapper">
+	<resultMap id="BaseResultMap" type="org.app.pojo.Summary">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="check_date" property="checkDate" jdbcType="DATE" />
+		<result column="settle_date" property="settleDate" jdbcType="DATE" />
+		<result column="send_station" property="sendStation" jdbcType="VARCHAR" />
+		<result column="send_corp" property="sendCorp" jdbcType="VARCHAR" />
+		<result column="good_name" property="goodName" jdbcType="VARCHAR" />
+		<result column="sa_date" property="saDate" jdbcType="DATE" />
+		<result column="arrive_station" property="arriveStation"
+			jdbcType="VARCHAR" />
+		<result column="arrive_corp" property="arriveCorp" jdbcType="VARCHAR" />
+		<result column="cntr_place" property="cntrPlace" jdbcType="VARCHAR" />
+		<result column="bill_type" property="billType" jdbcType="VARCHAR" />
+		<result column="cntr_type" property="cntrType" jdbcType="VARCHAR" />
+		<result column="bill_no" property="billNo" jdbcType="VARCHAR" />
+		<result column="cntr_owner" property="cntrOwner" jdbcType="VARCHAR" />
+		<result column="cntr_no" property="cntrNo" jdbcType="VARCHAR" />
+		<result column="lock_no" property="lockNo" jdbcType="INTEGER" />
+		<result column="consignee" property="consignee" jdbcType="VARCHAR" />
+		<result column="shipaddress" property="shipaddress" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="struck_no" property="struckNo" jdbcType="VARCHAR" />
+		<result column="send_date" property="sendDate" jdbcType="DATE" />
+		<result column="truck_driver" property="truckDriver" jdbcType="VARCHAR" />
+		<result column="truck_mo" property="truckMo" jdbcType="VARCHAR" />
+		<result column="repa_corp" property="repaCorp" jdbcType="VARCHAR" />
+		<result column="repa_projc" property="repaProjc" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="quantity" property="quantity" jdbcType="INTEGER" />
+		<result column="act_receivable" property="actReceivable"
+			jdbcType="DECIMAL" />
+		<result column="FLAG" property="flag" jdbcType="VARCHAR" />
+		<result column="income_id" property="incomeId" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="org.app.pojo.SummaryWithBLOBs"
+		extends="BaseResultMap">
+		<result column="settle_cmt" property="settleCmt" jdbcType="LONGVARCHAR" />
+		<result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, check_date, settle_date, send_station, send_corp, good_name, sa_date,
+		arrive_station,
+		arrive_corp, cntr_place, bill_type, cntr_type, bill_no, cntr_owner, cntr_no,
+		lock_no,
+		consignee, shipaddress, phone, struck_no, send_date, truck_driver, truck_mo,
+		repa_corp,
+		repa_projc, price, quantity, act_receivable, FLAG, income_id
+	</sql>
+	<sql id="Blob_Column_List">
+		settle_cmt, comment
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from summary
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from summary
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="org.app.pojo.SummaryWithBLOBs">
+		insert into summary (id, check_date, settle_date,
+		send_station, send_corp, good_name,
+		sa_date, arrive_station, arrive_corp,
+		cntr_place, bill_type, cntr_type,
+		bill_no, cntr_owner, cntr_no,
+		lock_no, consignee, shipaddress,
+		phone, struck_no, send_date,
+		truck_driver, truck_mo, repa_corp,
+		repa_projc, price, quantity,
+		act_receivable, FLAG, income_id,
+		settle_cmt, comment)
+		values (#{id,jdbcType=INTEGER}, #{checkDate,jdbcType=DATE},
+		#{settleDate,jdbcType=DATE},
+		#{sendStation,jdbcType=VARCHAR}, #{sendCorp,jdbcType=VARCHAR}, #{goodName,jdbcType=VARCHAR},
+		#{saDate,jdbcType=DATE}, #{arriveStation,jdbcType=VARCHAR},
+		#{arriveCorp,jdbcType=VARCHAR},
+		#{cntrPlace,jdbcType=VARCHAR}, #{billType,jdbcType=VARCHAR}, #{cntrType,jdbcType=VARCHAR},
+		#{billNo,jdbcType=VARCHAR}, #{cntrOwner,jdbcType=VARCHAR},
+		#{cntrNo,jdbcType=VARCHAR},
+		#{lockNo,jdbcType=INTEGER}, #{consignee,jdbcType=VARCHAR}, #{shipaddress,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{struckNo,jdbcType=VARCHAR},
+		#{sendDate,jdbcType=DATE},
+		#{truckDriver,jdbcType=VARCHAR}, #{truckMo,jdbcType=VARCHAR}, #{repaCorp,jdbcType=VARCHAR},
+		#{repaProjc,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+		#{quantity,jdbcType=INTEGER},
+		#{actReceivable,jdbcType=DECIMAL}, #{flag,jdbcType=VARCHAR}, #{incomeId,jdbcType=INTEGER},
+		#{settleCmt,jdbcType=LONGVARCHAR}, #{comment,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.app.pojo.SummaryWithBLOBs">
+		insert into summary
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="checkDate != null">
+				check_date,
+			</if>
+			<if test="settleDate != null">
+				settle_date,
+			</if>
+			<if test="sendStation != null">
+				send_station,
+			</if>
+			<if test="sendCorp != null">
+				send_corp,
+			</if>
+			<if test="goodName != null">
+				good_name,
+			</if>
+			<if test="saDate != null">
+				sa_date,
+			</if>
+			<if test="arriveStation != null">
+				arrive_station,
+			</if>
+			<if test="arriveCorp != null">
+				arrive_corp,
+			</if>
+			<if test="cntrPlace != null">
+				cntr_place,
+			</if>
+			<if test="billType != null">
+				bill_type,
+			</if>
+			<if test="cntrType != null">
+				cntr_type,
+			</if>
+			<if test="billNo != null">
+				bill_no,
+			</if>
+			<if test="cntrOwner != null">
+				cntr_owner,
+			</if>
+			<if test="cntrNo != null">
+				cntr_no,
+			</if>
+			<if test="lockNo != null">
+				lock_no,
+			</if>
+			<if test="consignee != null">
+				consignee,
+			</if>
+			<if test="shipaddress != null">
+				shipaddress,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="struckNo != null">
+				struck_no,
+			</if>
+			<if test="sendDate != null">
+				send_date,
+			</if>
+			<if test="truckDriver != null">
+				truck_driver,
+			</if>
+			<if test="truckMo != null">
+				truck_mo,
+			</if>
+			<if test="repaCorp != null">
+				repa_corp,
+			</if>
+			<if test="repaProjc != null">
+				repa_projc,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="quantity != null">
+				quantity,
+			</if>
+			<if test="actReceivable != null">
+				act_receivable,
+			</if>
+			<if test="flag != null">
+				FLAG,
+			</if>
+			<if test="incomeId != null">
+				income_id,
+			</if>
+			<if test="settleCmt != null">
+				settle_cmt,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="checkDate != null">
+				#{checkDate,jdbcType=DATE},
+			</if>
+			<if test="settleDate != null">
+				#{settleDate,jdbcType=DATE},
+			</if>
+			<if test="sendStation != null">
+				#{sendStation,jdbcType=VARCHAR},
+			</if>
+			<if test="sendCorp != null">
+				#{sendCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="goodName != null">
+				#{goodName,jdbcType=VARCHAR},
+			</if>
+			<if test="saDate != null">
+				#{saDate,jdbcType=DATE},
+			</if>
+			<if test="arriveStation != null">
+				#{arriveStation,jdbcType=VARCHAR},
+			</if>
+			<if test="arriveCorp != null">
+				#{arriveCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrPlace != null">
+				#{cntrPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="billType != null">
+				#{billType,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrType != null">
+				#{cntrType,jdbcType=VARCHAR},
+			</if>
+			<if test="billNo != null">
+				#{billNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrOwner != null">
+				#{cntrOwner,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrNo != null">
+				#{cntrNo,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNo != null">
+				#{lockNo,jdbcType=INTEGER},
+			</if>
+			<if test="consignee != null">
+				#{consignee,jdbcType=VARCHAR},
+			</if>
+			<if test="shipaddress != null">
+				#{shipaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="struckNo != null">
+				#{struckNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sendDate != null">
+				#{sendDate,jdbcType=DATE},
+			</if>
+			<if test="truckDriver != null">
+				#{truckDriver,jdbcType=VARCHAR},
+			</if>
+			<if test="truckMo != null">
+				#{truckMo,jdbcType=VARCHAR},
+			</if>
+			<if test="repaCorp != null">
+				#{repaCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="repaProjc != null">
+				#{repaProjc,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="quantity != null">
+				#{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="actReceivable != null">
+				#{actReceivable,jdbcType=DECIMAL},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="incomeId != null">
+				#{incomeId,jdbcType=INTEGER},
+			</if>
+			<if test="settleCmt != null">
+				#{settleCmt,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.app.pojo.SummaryWithBLOBs">
+		update summary
+		<set>
+			<if test="checkDate != null">
+				check_date = #{checkDate,jdbcType=DATE},
+			</if>
+			<if test="settleDate != null">
+				settle_date = #{settleDate,jdbcType=DATE},
+			</if>
+			<if test="sendStation != null">
+				send_station = #{sendStation,jdbcType=VARCHAR},
+			</if>
+			<if test="sendCorp != null">
+				send_corp = #{sendCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="goodName != null">
+				good_name = #{goodName,jdbcType=VARCHAR},
+			</if>
+			<if test="saDate != null">
+				sa_date = #{saDate,jdbcType=DATE},
+			</if>
+			<if test="arriveStation != null">
+				arrive_station = #{arriveStation,jdbcType=VARCHAR},
+			</if>
+			<if test="arriveCorp != null">
+				arrive_corp = #{arriveCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrPlace != null">
+				cntr_place = #{cntrPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="billType != null">
+				bill_type = #{billType,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrType != null">
+				cntr_type = #{cntrType,jdbcType=VARCHAR},
+			</if>
+			<if test="billNo != null">
+				bill_no = #{billNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrOwner != null">
+				cntr_owner = #{cntrOwner,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrNo != null">
+				cntr_no = #{cntrNo,jdbcType=VARCHAR},
+			</if>
+			<if test="lockNo != null">
+				lock_no = #{lockNo,jdbcType=INTEGER},
+			</if>
+			<if test="consignee != null">
+				consignee = #{consignee,jdbcType=VARCHAR},
+			</if>
+			<if test="shipaddress != null">
+				shipaddress = #{shipaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="struckNo != null">
+				struck_no = #{struckNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sendDate != null">
+				send_date = #{sendDate,jdbcType=DATE},
+			</if>
+			<if test="truckDriver != null">
+				truck_driver = #{truckDriver,jdbcType=VARCHAR},
+			</if>
+			<if test="truckMo != null">
+				truck_mo = #{truckMo,jdbcType=VARCHAR},
+			</if>
+			<if test="repaCorp != null">
+				repa_corp = #{repaCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="repaProjc != null">
+				repa_projc = #{repaProjc,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="quantity != null">
+				quantity = #{quantity,jdbcType=INTEGER},
+			</if>
+			<if test="actReceivable != null">
+				act_receivable = #{actReceivable,jdbcType=DECIMAL},
+			</if>
+			<if test="flag != null">
+				FLAG = #{flag,jdbcType=VARCHAR},
+			</if>
+			<if test="incomeId != null">
+				income_id = #{incomeId,jdbcType=INTEGER},
+			</if>
+			<if test="settleCmt != null">
+				settle_cmt = #{settleCmt,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.app.pojo.SummaryWithBLOBs">
+		update summary
+		set check_date = #{checkDate,jdbcType=DATE},
+		settle_date = #{settleDate,jdbcType=DATE},
+		send_station = #{sendStation,jdbcType=VARCHAR},
+		send_corp = #{sendCorp,jdbcType=VARCHAR},
+		good_name = #{goodName,jdbcType=VARCHAR},
+		sa_date = #{saDate,jdbcType=DATE},
+		arrive_station = #{arriveStation,jdbcType=VARCHAR},
+		arrive_corp = #{arriveCorp,jdbcType=VARCHAR},
+		cntr_place = #{cntrPlace,jdbcType=VARCHAR},
+		bill_type = #{billType,jdbcType=VARCHAR},
+		cntr_type = #{cntrType,jdbcType=VARCHAR},
+		bill_no = #{billNo,jdbcType=VARCHAR},
+		cntr_owner = #{cntrOwner,jdbcType=VARCHAR},
+		cntr_no = #{cntrNo,jdbcType=VARCHAR},
+		lock_no = #{lockNo,jdbcType=INTEGER},
+		consignee = #{consignee,jdbcType=VARCHAR},
+		shipaddress = #{shipaddress,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		struck_no = #{struckNo,jdbcType=VARCHAR},
+		send_date = #{sendDate,jdbcType=DATE},
+		truck_driver = #{truckDriver,jdbcType=VARCHAR},
+		truck_mo = #{truckMo,jdbcType=VARCHAR},
+		repa_corp = #{repaCorp,jdbcType=VARCHAR},
+		repa_projc = #{repaProjc,jdbcType=VARCHAR},
+		price = #{price,jdbcType=DECIMAL},
+		quantity = #{quantity,jdbcType=INTEGER},
+		act_receivable = #{actReceivable,jdbcType=DECIMAL},
+		FLAG = #{flag,jdbcType=VARCHAR},
+		income_id = #{incomeId,jdbcType=INTEGER},
+		settle_cmt = #{settleCmt,jdbcType=LONGVARCHAR},
+		comment = #{comment,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.app.pojo.Summary">
+		update summary
+		set check_date = #{checkDate,jdbcType=DATE},
+		settle_date = #{settleDate,jdbcType=DATE},
+		send_station = #{sendStation,jdbcType=VARCHAR},
+		send_corp = #{sendCorp,jdbcType=VARCHAR},
+		good_name = #{goodName,jdbcType=VARCHAR},
+		sa_date = #{saDate,jdbcType=DATE},
+		arrive_station = #{arriveStation,jdbcType=VARCHAR},
+		arrive_corp = #{arriveCorp,jdbcType=VARCHAR},
+		cntr_place = #{cntrPlace,jdbcType=VARCHAR},
+		bill_type = #{billType,jdbcType=VARCHAR},
+		cntr_type = #{cntrType,jdbcType=VARCHAR},
+		bill_no = #{billNo,jdbcType=VARCHAR},
+		cntr_owner = #{cntrOwner,jdbcType=VARCHAR},
+		cntr_no = #{cntrNo,jdbcType=VARCHAR},
+		lock_no = #{lockNo,jdbcType=INTEGER},
+		consignee = #{consignee,jdbcType=VARCHAR},
+		shipaddress = #{shipaddress,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		struck_no = #{struckNo,jdbcType=VARCHAR},
+		send_date = #{sendDate,jdbcType=DATE},
+		truck_driver = #{truckDriver,jdbcType=VARCHAR},
+		truck_mo = #{truckMo,jdbcType=VARCHAR},
+		repa_corp = #{repaCorp,jdbcType=VARCHAR},
+		repa_projc = #{repaProjc,jdbcType=VARCHAR},
+		price = #{price,jdbcType=DECIMAL},
+		quantity = #{quantity,jdbcType=INTEGER},
+		act_receivable = #{actReceivable,jdbcType=DECIMAL},
+		FLAG = #{flag,jdbcType=VARCHAR},
+		income_id = #{incomeId,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="dynamicLoad" resultMap="BaseResultMap"
+		parameterType="org.app.pojo.Summary">
+		select
+		<include refid="Base_Column_List" />
+		from summary where 1=1
+		<if test="flag != null and flag !=''">
+            and FLAG = #{flag,jdbcType=VARCHAR} 
+		</if>
+		<if test="goodName != null and goodName !=''">
+			and good_name LIKE CONCAT('%',
+			CONCAT(#{goodName,jdbcType=VARCHAR}, '%'))
+		</if>
+
+	</select>
+
+	<select id="getMaxId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		SELECT IFNULL(MAX(id),0) FROM
+		summary
+	</select>
+</mapper>

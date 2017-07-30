@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.app.dao.IncomeMapper">
+	<resultMap id="BaseResultMap" type="org.app.pojo.Income">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="cntr_place" property="cntrPlace" jdbcType="VARCHAR" />
+		<result column="acorp_name" property="acorpName" jdbcType="VARCHAR" />
+		<result column="cntr_no" property="cntrNo" jdbcType="VARCHAR" />
+		<result column="consignee" property="consignee" jdbcType="VARCHAR" />
+		<result column="corp_address" property="corpAddress" jdbcType="VARCHAR" />
+		<result column="corp_phone" property="corpPhone" jdbcType="VARCHAR" />
+		<result column="corp_payer" property="corpPayer" jdbcType="VARCHAR" />
+		<result column="stg_cost" property="stgCost" jdbcType="DECIMAL" />
+		<result column="sts_cost" property="stsCost" jdbcType="DECIMAL" />
+		<result column="trans_exp" property="transExp" jdbcType="DECIMAL" />
+		<result column="incidental_exp" property="incidentalExp"
+			jdbcType="DECIMAL" />
+		<result column="strcuk_no" property="strcukNo" jdbcType="INTEGER" />
+		<result column="send_date" property="sendDate" jdbcType="DATE" />
+		<result column="truck_driver" property="truckDriver" jdbcType="VARCHAR" />
+		<result column="truck_no" property="truckNo" jdbcType="VARCHAR" />
+		<result column="sainput_id" property="sainputId" jdbcType="INTEGER" />
+		<result column="FLAG" property="flag" jdbcType="VARCHAR" />
+		<result column="summary_state" property="summaryState"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="org.app.pojo.Income"
+		extends="BaseResultMap">
+		<result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, cntr_place, acorp_name, cntr_no, consignee,
+		corp_address, corp_phone,
+		corp_payer,
+		stg_cost, sts_cost, trans_exp,
+		incidental_exp, strcuk_no, send_date,
+		truck_driver,
+		truck_no,
+		sainput_id, FLAG, summary_state
+	</sql>
+	<sql id="Blob_Column_List">
+		comment
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from income
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from income
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="org.app.pojo.Income">
+		insert into income (id,
+		cntr_place, acorp_name,
+		cntr_no, consignee, corp_address,
+		corp_phone,
+		corp_payer, stg_cost,
+		sts_cost, trans_exp, incidental_exp,
+		strcuk_no,
+		send_date, truck_driver,
+		truck_no, sainput_id, comment,FLAG,
+		summary_state
+		)
+		values
+		(#{id,jdbcType=INTEGER},
+		#{cntrPlace,jdbcType=VARCHAR},
+		#{acorpName,jdbcType=VARCHAR},
+		#{cntrNo,jdbcType=VARCHAR},
+		#{consignee,jdbcType=VARCHAR},
+		#{corpAddress,jdbcType=VARCHAR},
+		#{corpPhone,jdbcType=VARCHAR},
+		#{corpPayer,jdbcType=VARCHAR},
+		#{stgCost,jdbcType=DECIMAL},
+		#{stsCost,jdbcType=DECIMAL},
+		#{transExp,jdbcType=DECIMAL},
+		#{incidentalExp,jdbcType=DECIMAL},
+		#{strcukNo,jdbcType=INTEGER},
+		#{sendDate,jdbcType=DATE},
+		#{truckDriver,jdbcType=VARCHAR},
+		#{truckNo,jdbcType=VARCHAR},
+		#{sainputId,jdbcType=INTEGER},
+		#{comment,jdbcType=LONGVARCHAR},
+		#{flag,jdbcType=VARCHAR},
+		#{summaryState,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="org.app.pojo.Income">
+		insert into income
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="cntrPlace != null">
+				cntr_place,
+			</if>
+			<if test="acorpName != null">
+				acorp_name,
+			</if>
+			<if test="cntrNo != null">
+				cntr_no,
+			</if>
+			<if test="consignee != null">
+				consignee,
+			</if>
+			<if test="corpAddress != null">
+				corp_address,
+			</if>
+			<if test="corpPhone != null">
+				corp_phone,
+			</if>
+			<if test="corpPayer != null">
+				corp_payer,
+			</if>
+			<if test="stgCost != null">
+				stg_cost,
+			</if>
+			<if test="stsCost != null">
+				sts_cost,
+			</if>
+			<if test="transExp != null">
+				trans_exp,
+			</if>
+			<if test="incidentalExp != null">
+				incidental_exp,
+			</if>
+			<if test="strcukNo != null">
+				strcuk_no,
+			</if>
+			<if test="sendDate != null">
+				send_date,
+			</if>
+			<if test="truckDriver != null">
+				truck_driver,
+			</if>
+			<if test="truckNo != null">
+				truck_no,
+			</if>
+			<if test="sainputId != null">
+				sainput_id,
+			</if>
+			<if test="flag != null">
+				FLAG,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
+			<if test="summaryState != null">
+				summary_state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="cntrPlace != null">
+				#{cntrPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="acorpName != null">
+				#{acorpName,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrNo != null">
+				#{cntrNo,jdbcType=VARCHAR},
+			</if>
+			<if test="consignee != null">
+				#{consignee,jdbcType=VARCHAR},
+			</if>
+			<if test="corpAddress != null">
+				#{corpAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="corpPhone != null">
+				#{corpPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="corpPayer != null">
+				#{corpPayer,jdbcType=VARCHAR},
+			</if>
+			<if test="stgCost != null">
+				#{stgCost,jdbcType=DECIMAL},
+			</if>
+			<if test="stsCost != null">
+				#{stsCost,jdbcType=DECIMAL},
+			</if>
+			<if test="transExp != null">
+				#{transExp,jdbcType=DECIMAL},
+			</if>
+			<if test="incidentalExp != null">
+				#{incidentalExp,jdbcType=DECIMAL},
+			</if>
+			<if test="strcukNo != null">
+				#{strcukNo,jdbcType=INTEGER},
+			</if>
+			<if test="sendDate != null">
+				#{sendDate,jdbcType=DATE},
+			</if>
+			<if test="truckDriver != null">
+				#{truckDriver,jdbcType=VARCHAR},
+			</if>
+			<if test="truckNo != null">
+				#{truckNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sainputId != null">
+				#{sainputId,jdbcType=INTEGER},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=INTEGER},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="summaryState != null">
+				#{summaryState,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.app.pojo.Income">
+		update income
+		<set>
+			<if test="cntrPlace != null">
+				cntr_place = #{cntrPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="acorpName != null">
+				acorp_name = #{acorpName,jdbcType=VARCHAR},
+			</if>
+			<if test="cntrNo != null">
+				cntr_no = #{cntrNo,jdbcType=VARCHAR},
+			</if>
+			<if test="consignee != null">
+				consignee = #{consignee,jdbcType=VARCHAR},
+			</if>
+			<if test="corpAddress != null">
+				corp_address = #{corpAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="corpPhone != null">
+				corp_phone = #{corpPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="corpPayer != null">
+				corp_payer = #{corpPayer,jdbcType=VARCHAR},
+			</if>
+			<if test="stgCost != null">
+				stg_cost = #{stgCost,jdbcType=DECIMAL},
+			</if>
+			<if test="stsCost != null">
+				sts_cost = #{stsCost,jdbcType=DECIMAL},
+			</if>
+			<if test="transExp != null">
+				trans_exp = #{transExp,jdbcType=DECIMAL},
+			</if>
+			<if test="incidentalExp != null">
+				incidental_exp = #{incidentalExp,jdbcType=DECIMAL},
+			</if>
+			<if test="strcukNo != null">
+				strcuk_no = #{strcukNo,jdbcType=INTEGER},
+			</if>
+			<if test="sendDate != null">
+				send_date = #{sendDate,jdbcType=DATE},
+			</if>
+			<if test="truckDriver != null">
+				truck_driver = #{truckDriver,jdbcType=VARCHAR},
+			</if>
+			<if test="truckNo != null">
+				truck_no = #{truckNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sainputId != null">
+				sainput_id = #{sainputId,jdbcType=INTEGER},
+			</if>
+			<if test="flag != null">
+				FLAG = #{flag,jdbcType=INTEGER},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="summaryState != null">
+				summary_state = #{summaryState,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.app.pojo.Income">
+		update
+		income
+		set cntr_place = #{cntrPlace,jdbcType=VARCHAR},
+		acorp_name =
+		#{acorpName,jdbcType=VARCHAR},
+		cntr_no = #{cntrNo,jdbcType=VARCHAR},
+		consignee = #{consignee,jdbcType=VARCHAR},
+		corp_address =
+		#{corpAddress,jdbcType=VARCHAR},
+		corp_phone =
+		#{corpPhone,jdbcType=VARCHAR},
+		corp_payer =
+		#{corpPayer,jdbcType=VARCHAR},
+		stg_cost = #{stgCost,jdbcType=DECIMAL},
+		sts_cost = #{stsCost,jdbcType=DECIMAL},
+		trans_exp =
+		#{transExp,jdbcType=DECIMAL},
+		incidental_exp =
+		#{incidentalExp,jdbcType=DECIMAL},
+		strcuk_no =
+		#{strcukNo,jdbcType=INTEGER},
+		send_date = #{sendDate,jdbcType=DATE},
+		truck_driver = #{truckDriver,jdbcType=VARCHAR},
+		truck_no =
+		#{truckNo,jdbcType=VARCHAR},
+		sainput_id =
+		#{sainputId,jdbcType=INTEGER},
+		comment =
+		#{comment,jdbcType=LONGVARCHAR},
+		summary_state =
+		#{summaryState,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.app.pojo.Income">
+		update income
+		set
+		cntr_place = #{cntrPlace,jdbcType=VARCHAR},
+		acorp_name =
+		#{acorpName,jdbcType=VARCHAR},
+		cntr_no = #{cntrNo,jdbcType=VARCHAR},
+		consignee = #{consignee,jdbcType=VARCHAR},
+		corp_address =
+		#{corpAddress,jdbcType=VARCHAR},
+		corp_phone =
+		#{corpPhone,jdbcType=VARCHAR},
+		corp_payer =
+		#{corpPayer,jdbcType=VARCHAR},
+		stg_cost = #{stgCost,jdbcType=DECIMAL},
+		sts_cost = #{stsCost,jdbcType=DECIMAL},
+		trans_exp =
+		#{transExp,jdbcType=DECIMAL},
+		incidental_exp =
+		#{incidentalExp,jdbcType=DECIMAL},
+		strcuk_no =
+		#{strcukNo,jdbcType=INTEGER},
+		send_date = #{sendDate,jdbcType=DATE},
+		truck_driver = #{truckDriver,jdbcType=VARCHAR},
+		truck_no =
+		#{truckNo,jdbcType=VARCHAR},
+		sainput_id =
+		#{sainputId,jdbcType=INTEGER},
+		summary_state =
+		#{summaryState,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="getMaxId" resultType="java.lang.Integer"
+		parameterType="java.lang.Integer">
+		SELECT IFNULL(MAX(id),0) FROM
+		income
+	</select>
+
+	<select id="dynamicLoad" resultMap="BaseResultMap"
+		parameterType="org.app.pojo.Income">
+		select
+		<include refid="Base_Column_List" />
+		from income where 1=1
+		<if test="cntrPlace != null and cntrPlace !=''">
+			and cntr_place LIKE CONCAT('%',
+			CONCAT(#{cntrPlace,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="consignee != null and consignee !=''">
+			and con_signee LIKE CONCAT('%',
+			CONCAT(#{consignee,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="corpAddress != null and corpAddress !=''">
+			and corp_addressLIKE CONCAT('%',
+			CONCAT(#{corpAddress,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="truckDriver != null and truckDriver !=''">
+			and truck_driver LIKE CONCAT('%',
+			CONCAT(#{truckDriver,jdbcType=VARCHAR}, '%'))
+		</if>
+		<if test="sainputId != null and sainputId !=''">
+			and sainput_id=#{sainputId,jdbcType=INTEGER}
+		</if>
+		<if test="flag != null and flag !=''">
+			and FLAG=#{flag,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+</mapper>

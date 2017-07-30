@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/jquery-1.8.3.min.js" type="text/JavaScript"></script>
+    <style type="text/css">
+        select{width:100px;height:100px;float:left;margin:10px;}       
+        #main{float:left;width:60px;text-align:center;margin:10px;}
+        #main input{width:50px;}
+    </style>
+    <script type="text/javascript">
+        var myJson = [{ "id": "1", "Name": "刘德华", "Age": "52" },
+                       { "id": "2", "Name": "文章", "Age": "26" },
+                       {"id":"3","Name":"孙红雷","Age":"40"},
+                       { "id": "4", "Name": "葛优", "Age": "58"}];
+
+                       $(function () {
+                           var $leftSel = $("#leftSel");
+                           for (var i = 0; i < myJson.length; i++) {
+                               var $option = $("<option value='" + myJson[i].Name + "'>" +
+                                                myJson[i].Name + "</option>");
+                               $option.appendTo($leftSel);
+                           }
+
+                           $("#btnMoveLeft").click(function () {
+                               var $selOptions = $("#leftSel option:selected");
+                               $selOptions.appendTo($("#rightSel")).attr("selected", false);
+                           });
+
+                           $("#btnMoveLeftAll").click(function () {
+                               var $allLeftOptions = $("#leftSel option");
+                               $allLeftOptions.appendTo($("#rightSel")).attr("selected", false);
+                           });
+
+                           $("#btnMoveRight").click(function () {
+                               var $selOptions = $("#rightSel option:selected");
+                               $selOptions.appendTo($leftSel).attr("selected", false);
+                           });
+
+                           $("#btnMoveRightAll").click(function () {
+                               var $allRightOptions = $("#rightSel option");
+                               $allRightOptions.appendTo($leftSel).attr("selected", false);
+                           });
+                       });
+    </script>
+</head>
+<body>
+    <select id="leftSel" multiple="multiple">
+    </select>
+    <div id="main">
+        <input id="btnMoveLeft" type="button" value="-->" />
+        <input id="btnMoveLeftAll" type="button" value="==>" />
+        <input id="btnMoveRight" type="button" value="<--" />
+        <input id="btnMoveRightAll" type="button" value="<==" />
+    </div>
+    <select id="rightSel" multiple="multiple">
+    </select>
+</body>
+</html>
