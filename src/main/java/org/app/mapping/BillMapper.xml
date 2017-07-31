@@ -297,7 +297,7 @@
 		bill
 	</select>
 
-	<select id="selectByNo" resultMap="BaseResultMap" parameterType="org.app.pojo.Bill">
+	<select id="selectByNo" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from bill

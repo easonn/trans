@@ -59,6 +59,7 @@
 								<th>开票单位</th>
 								<th>发票金额</th>
 								<th>付款经办人</th>
+								<th>收款经办人</th>
 								<th>费用录入</th>
 								<th>编辑</th>
 								<th>删除</th>
@@ -75,6 +76,7 @@
 								<td>${bill.billCorp}</td>
 								<td>${bill.price}</td>
 								<td>${bill.agencyf}</td>
+								<td>${bill.agencys}</td>
 								<td><c:choose>
 										<c:when test="${bill.getFlag().equals('N')}">
 											<a class="" href="/bill/bill_price_insert?id=${bill.getId()}"><span
